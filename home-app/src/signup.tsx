@@ -31,12 +31,13 @@ const Signup = () => {
                 @import url('https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css');
                 
                 .signup-container {
-                    min-height: 100vh;
+                    height: 100vh;       
+                    width: 100vw;
                     background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 25%, #ecfdf5 50%, #f0fdfa 75%, #f0f9ff 100%);
                     display: flex;
                     align-items: center;
                     justify-content: center;
-                    padding: 1rem;
+                    padding: 0rem;
                     position: relative;
                     overflow: hidden;
                 }
@@ -140,7 +141,7 @@ const Signup = () => {
                 .main-card {
                     position: relative;
                     width: 100%;
-                    max-width: 28rem;
+                    max-width: 38rem;
                     z-index: 2;
                 }
 
@@ -289,7 +290,7 @@ const Signup = () => {
                 }
 
                 .features-title {
-                    font-size: 0.875rem;
+                    font-size: 1.2rem;
                     font-weight: 600;
                     color: #374151;
                     margin-bottom: 0.5rem;
@@ -459,15 +460,15 @@ const Signup = () => {
                             <h3 className="features-title">What you'll get:</h3>
                             <div className="feature-item">
                                 <div className="feature-dot"></div>
-                                <span>Smart crop recommendations</span>
+                                <h6>Smart crop recommendations</h6>
                             </div>
                             <div className="feature-item">
                                 <div className="feature-dot"></div>
-                                <span>Real-time weather insights</span>
+                                <h6>Real-time weather insights</h6>
                             </div>
                             <div className="feature-item">
                                 <div className="feature-dot"></div>
-                                <span>Live sensor monitoring</span>
+                                <h6>Live sensor monitoring</h6>
                             </div>
                         </div>
 

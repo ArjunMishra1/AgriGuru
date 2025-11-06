@@ -18,7 +18,7 @@ interface RealtimeData {
     temperature: DataPoint[];
     humidity: DataPoint[];
     rain: DataPoint[];
-    light: DataPoint[];
+    // light: DataPoint[];
 }
 
 interface ThingSpeakFeed {
@@ -26,7 +26,7 @@ interface ThingSpeakFeed {
     field1: string; // temperature
     field2: string; // humidity
     field3: string; // rain
-    field4: string; // light
+    // field4: string; // light
 }
 
 interface ChatMessage {
@@ -44,7 +44,7 @@ const Dashboard = () => {
         temperature: [],
         humidity: [],
         rain: [],
-        light: []
+        // light: []
     });
     const [prevTemp, setPrevTemp] = useState<Number>();
     const [prevHumidity, setPrevHumidity] = useState<Number>();
@@ -64,7 +64,7 @@ const Dashboard = () => {
     // Fetch data from ThingSpeak API
     const fetchThingSpeakData = async () => {
         try {
-            const response = await fetch('https://api.thingspeak.com/channels/3005927/feeds.json?api_key=FTWU8TLVE7ANUC2G&results=100');
+            const response = await fetch('https://api.thingspeak.com/channels/3085396/feeds.json?api_key=TMN8BA2T5OS3Z2TM');
             const data = await response.json();
 
             if (data.feeds && data.feeds.length > 0) {
@@ -83,10 +83,10 @@ const Dashboard = () => {
                         time: new Date(feed.created_at).toLocaleTimeString(),
                         value: parseFloat(feed.field3) || 0
                     })),
-                    light: feeds.map((feed: ThingSpeakFeed) => ({
-                        time: new Date(feed.created_at).toLocaleTimeString(),
-                        value: parseFloat(feed.field4) || 0
-                    }))
+                    // light: feeds.map((feed: ThingSpeakFeed) => ({
+                    //     time: new Date(feed.created_at).toLocaleTimeString(),
+                    //     value: parseFloat(feed.field4) || 0
+                    // }))
                 };
                 const latestFeed = feeds[feeds.length - 1];
                 setPrevTemp(parseFloat(latestFeed.field1));
@@ -97,11 +97,11 @@ const Dashboard = () => {
             console.error('Error fetching ThingSpeak data:', error);
         }
     };
-
     // Predict crop function
     const predictCrop = async () => {
         setIsLoading(true);
-        const url = 'http://172.10.1.109:5000/predict';
+        const link = import.meta.env.VITE_PREDICT;
+        const url = ` ${link}`;
         const data = {
             Nitrogen: parseFloat("50"),
             Phosporus: parseFloat("60"),
@@ -133,10 +133,10 @@ const Dashboard = () => {
         } catch (err) {
             console.error('Error sending data:', err);
             // Fallback for demo
-            setCropPrediction("Wheat");
+            setCropPrediction("RICE");
             const mockResult = {
                 prediction: 'Positive',
-                confidence: '85',
+                confidence: '84',
                 timestamp: new Date().toLocaleTimeString()
             };
             setPredictionResult(mockResult);
@@ -200,11 +200,12 @@ const Dashboard = () => {
         setIsChatLoading(true);
 
         try {
+            const API = import.meta.env.VITE_OPEN_ROUTER_API;
             const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': 'Bearer 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', // ⚠️ Move to env/server for production
+                    'Authorization': `Bearer ${API}`,
                     'Referer': window.location.origin,
                     'X-Title': 'Agricultural Dashboard'
                 },
@@ -294,6 +295,7 @@ const Dashboard = () => {
         .bg-gradient-custom {
           background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 25%, #ecfdf5 50%, #f0fdfa 75%, #f0f9ff 100%);
           min-height: 100vh;
+          width: 100vw;
         }
 
         .bg-orb {
@@ -366,7 +368,7 @@ const Dashboard = () => {
         }
 
         .chart-container {
-          height: 300px;
+          height: 400px;
         }
 
         .status-indicator {
@@ -547,22 +549,22 @@ const Dashboard = () => {
                                             <div className="row g-3">
                                                 <div className="col-4">
                                                     <div className="p-3 bg-light rounded-3">
-                                                        <div className="small text-muted text-uppercase mb-1">Status</div>
-                                                        <div className={`fw-bold ${predictionResult.prediction === 'Positive' ? 'text-success' : 'text-danger'}`}>
+                                                        <div className="text-muted text-uppercase mb-1">Status</div>
+                                                        <h6 className={`fw-bold ${predictionResult.prediction === 'Positive' ? 'text-success' : 'text-danger'}`}>
                                                             {predictionResult.prediction}
-                                                        </div>
+                                                        </h6>
                                                     </div>
                                                 </div>
                                                 <div className="col-4">
                                                     <div className="p-3 bg-light rounded-3">
-                                                        <div className="small text-muted text-uppercase mb-1">Confidence</div>
-                                                        <div className="fw-bold text-info">{predictionResult.confidence}%</div>
+                                                        <div className="text-muted text-uppercase mb-1">Confidence</div>
+                                                        <h6 className="fw-bold text-info">{predictionResult.confidence}%</h6>
                                                     </div>
                                                 </div>
                                                 <div className="col-4">
                                                     <div className="p-3 bg-light rounded-3">
-                                                        <div className="small text-muted text-uppercase mb-1">Crop</div>
-                                                        <div className="fw-bold text-primary">{cropPredicted}</div>
+                                                        <div className="text-muted text-uppercase mb-1">Crop</div>
+                                                        <h6 className="fw-bold text-primary">{cropPredicted}</h6>
                                                     </div>
                                                 </div>
                                             </div>
@@ -677,7 +679,7 @@ const Dashboard = () => {
                         </div>
 
                         {/* Light Chart */}
-                        <div className="col-md-6">
+                        {/* <div className="col-md-6">
                             <div className="glass-card rounded-4 p-4 h-100">
                                 <div className="d-flex align-items-center mb-3">
                                     <div className="status-indicator bg-warning rounded-circle me-2" style={{ width: '12px', height: '12px' }}></div>
@@ -710,7 +712,7 @@ const Dashboard = () => {
                                     </ResponsiveContainer>
                                 </div>
                             </div>
-                        </div>
+                        </div> */}
                     </div>
 
                     {/* Status Section */}

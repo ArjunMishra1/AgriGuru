@@ -22,7 +22,7 @@ const Login = () => {
             localStorage.setItem('user', JSON.stringify({ email }));
             
             // Navigate to dashboard
-            navigate('/home');
+            navigate('/dashboard');
         } else {
             alert('Please SignUp');
             navigate('/signup');
@@ -36,12 +36,13 @@ const Login = () => {
         @import url('https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css');
         
         .login-container {
-          min-height: 100vh;
+          height: 100vh;       
+          width: 100vw; 
           background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 25%, #ecfdf5 50%, #f0fdfa 75%, #f0f9ff 100%);
           display: flex;
           align-items: center;
           justify-content: center;
-          padding: 1rem;
+          padding: 0rem;
           position: relative;
           overflow: hidden;
         }
@@ -145,7 +146,7 @@ const Login = () => {
         .main-card {
           position: relative;
           width: 100%;
-          max-width: 28rem;
+          max-width: 38rem;
           z-index: 2;
         }
 
@@ -211,7 +212,7 @@ const Login = () => {
         }
 
         .demo-title {
-          font-size: 0.875rem;
+          font-size: 1.2rem;
           font-weight: 600;
           color: #059669;
           margin-bottom: 0.5rem;
@@ -258,7 +259,7 @@ const Login = () => {
           transition: all 0.2s ease;
         }
 
-        .form-input::placeholder {
+        .form-input::placeholder {  
           color: #9ca3af;
         }
 
@@ -277,7 +278,7 @@ const Login = () => {
           width: 100%;
           background: linear-gradient(45deg, #22c55e, #059669);
           color: white;
-          padding: 1rem 2rem;
+          // padding: 1rem 2rem;            
           border: none;
           border-radius: 0.75rem;
           font-size: 1.1rem;
@@ -324,7 +325,7 @@ const Login = () => {
         }
 
         .features-title {
-          font-size: 0.875rem;
+          font-size: 1.2rem;
           font-weight: 600;
           color: #374151;
           margin-bottom: 0.5rem;
@@ -421,11 +422,11 @@ const Login = () => {
                             <h4 className="demo-title">Demo Credentials:</h4>
                             <div className="demo-item">
                                 <div className="demo-dot"></div>
-                                <span>Email: user@example.com</span>
+                                <h6>Email: user@example.com</h6>
                             </div>
                             <div className="demo-item">
                                 <div className="demo-dot"></div>
-                                <span>Password: 123456</span>
+                                <h6>Password: 123456</h6>
                             </div>
                         </div>
 
@@ -487,15 +488,15 @@ const Login = () => {
                             <h3 className="features-title">What you'll get:</h3>
                             <div className="feature-item">
                                 <div className="feature-dot"></div>
-                                <span>Smart crop recommendations</span>
+                                <h6>Smart crop recommendations</h6>
                             </div>
                             <div className="feature-item">
                                 <div className="feature-dot"></div>
-                                <span>Real-time weather insights</span>
+                                <h6>Real-time weather insights</h6>
                             </div>
                             <div className="feature-item">
                                 <div className="feature-dot"></div>
-                                <span>Live sensor monitoring</span>
+                                <h6>Live sensor monitoring</h6>
                             </div>
                         </div>
 
