@@ -214,7 +214,7 @@ const Dashboard = () => {
                     messages: [
                         {
                             role: 'system',
-                            content: 'You are an agricultural AI assistant specializing in crop recommendations, weather analysis, and farming insights. Provide helpful, accurate information about agriculture, crops, weather patterns, and farming techniques. Keep responses concise but informative.'
+                            content: 'You are an agricultural AI assistant specializing in crop recommendations, weather analysis, and farming insights. Provide helpful, accurate information about agriculture, crops, weather patterns, and farming techniques. Keep responses concise but informative.And answer questions only related to farming.'
                         },
                         {
                             role: 'user',
