@@ -1,6 +1,6 @@
-# AgriGuru – Crop Recommendation System
+# AgriTech – Crop Recommendation System
 
-AgriGuru is an intelligent crop recommendation system that assists farmers in making informed crop selection decisions.  
+AgriTech is an intelligent crop recommendation system that assists farmers in making informed crop selection decisions.  
 The system uses a **Machine Learning model (Random Forest)** trained on soil and environmental parameters to recommend the most suitable crop to grow.
 
 ---
